@@ -1,0 +1,23 @@
+.App {
+  background-color: rgb(0, 0, 0);
+}
+
+/* .slick-slide {
+  background-color: white;
+  
+}
+.slick-list {
+  margin: 0 -20px;
+}
+*/
+/* .slick-slide > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blueviolet;
+  margin-left: 30px;
+} */
+
+.slick-slide > div {
+  margin: 10px;
+}
