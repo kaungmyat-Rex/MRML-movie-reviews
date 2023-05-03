@@ -26,17 +26,29 @@ export const TrandingSlider = () => {
     pauseOnHover: true,
   };
   return (
-    <Slider {...settings} className="bg-red-600 mt-7">
-      {data?.slice(0, 5).map((e: any) => (
-        <div>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${e.poster_path}`}
-            alt="casual"
-            className="rounded-2xl w-72"
-          />
-        </div>
-      ))}
-    </Slider>
+    <>
+      <h1 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block bg-clip-text text-transparent text-lg font-extrabold pt-5 pb-5 mt-5">
+        မကြာခင် လာမည့် ရုပ်ရှင်များ
+      </h1>
+      <Slider {...settings} className=" mt-1">
+        {data?.map((e: any) => (
+          <div key={e.id} className="relative w-72 flex">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${e.poster_path}`}
+              alt="casual"
+              className="rounded-2xl w-full relative"
+            />
+            <div className="absolute z-10 left-0 bottom-0 bg-gradient-to-t from-purple-950 from-10 w-full h-full"></div>
+            <h4 className="absolute left-2 bottom-2 text-white text-xl z-20">
+              {e.title}
+            </h4>
+            <span className="absolute bg-gradient-to-r from-purple-500 to-pink-500 inline-block text-base rounded-lg pl-2 pr-2 font-bold z-40 top-0 right-0">
+              {e.vote_average}
+            </span>
+          </div>
+        ))}
+      </Slider>
+    </>
   );
 };
 

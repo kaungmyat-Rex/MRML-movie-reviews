@@ -15,6 +15,9 @@ export default {
       spacing: {
         96: "1px",
       },
+      gradientColorStopPositions: {
+        10: "-50%",
+      },
     },
   },
   plugins: [],
