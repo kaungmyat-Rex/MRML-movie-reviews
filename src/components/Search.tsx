@@ -20,12 +20,16 @@ const Search = () => {
     e.preventDefault();
     setopenSearchList(true);
     await axios
-      .get(`https://imdb-api.com/en/API/SearchMovie/k_z20zir6t/${searchInput}`)
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=97daa3077452cbe6f793644c1afc0868&query=${searchInput}&include_adult=true&language=en-US&page=1`
+      )
       .then((res) => {
         setLoading(false);
         setSearchDataList(res.data.results);
       });
   };
+
+  console.log(searchDataList);
 
   return (
     <div className="flex flex-col justify-center items-center pt-5">

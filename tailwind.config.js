@@ -9,6 +9,7 @@ export default {
       maxWidth: {
         128: "120px",
         170: "170px",
+        700: "700px",
       },
       colors: {
         searchListBgColor: "rgba(237, 27, 242, 0.10)",

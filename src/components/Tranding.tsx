@@ -44,11 +44,12 @@ export const TrandingSlider = () => {
             `https://imdb-api.com/en/API/YouTubeTrailer/k_z20zir6t/${res.data.imdb_id}`
           )
           .then((res) => {
-            const url = res.data.videoUrl;
-            const regex =
-              /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})(?:[\&\?].*?)?(?:#t=(\d+))?$/;
-            const match = url.match(regex);
-            setTrailar(match[1]);
+            setTrailar(res.data.videoUrl);
+            // const url = res.data.videoUrl;
+            // const regex =
+            //   /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})(?:[\&\?].*?)?(?:#t=(\d+))?$/;
+            // const match = url.match(regex);
+            // setTrailar(match[1]);
           });
 
         const options = {
@@ -112,15 +113,13 @@ export const TrandingSlider = () => {
               alt="casual"
               className="rounded-2xl w-full relative"
             />
-            <div className="absolute z-10 left-0 bottom-0 bg-gradient-to-t from-purple-950 from-10 w-full h-full"></div>
-            <h4 className="absolute left-2 bottom-2 text-white text-xl z-20">
+            <div className="absolute left-0 bottom-0 bg-gradient-to-t from-purple-950 from-10 w-full h-full"></div>
+            <h4 className="absolute left-2 bottom-2 text-white text-xl">
               {e.title}
               <br />
-              <span className="text-slate-300 z-20 text-sm ">
-                {e.release_date}
-              </span>
+              <span className="text-slate-300 text-sm ">{e.release_date}</span>
             </h4>
-            <span className="absolute bg-gradient-to-r from-purple-500 to-pink-500 inline-block text-base rounded-lg pl-2 pr-2 font-bold z-40 top-0 right-0">
+            <span className="absolute bg-gradient-to-r from-purple-500 to-pink-500 inline-block text-lg rounded-full pl-2 pr-2 pt-2 pb-2 font-bold -top-2 right-3 text-black">
               {e.vote_average}
             </span>
           </div>

@@ -3,7 +3,7 @@ import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TrandingSlider } from "./components/Tranding";
 import Search from "./components/Search";
-
+import WatchBefore from "./components/WatchBefore";
 function App() {
   const Client = new QueryClient({
     defaultOptions: {
@@ -20,6 +20,7 @@ function App() {
           <Nav />
           <Search />
           <TrandingSlider />
+          <WatchBefore />
         </div>
       </QueryClientProvider>
     </div>
