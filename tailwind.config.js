@@ -25,8 +25,10 @@ export default {
       gradientColorStopPositions: {
         10: "-50%",
         20: "40%",
+        30: "30%",
+        15: "5%",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

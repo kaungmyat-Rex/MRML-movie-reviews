@@ -18,6 +18,11 @@ function SampleNextArrow(props: any) {
   );
 }
 
+function DisplayNextArrow(props: any) {
+  const { className, style, onClick } = props;
+  return <div className={className} style={{ ...style }} onClick={onClick} />;
+}
+
 export const TrandingSlider = () => {
   const [openTrandModel, setOpenTrandModel] = useState<boolean>(false);
   const [modeldata, setModelData] = useState([]) as any[];
@@ -87,7 +92,7 @@ export const TrandingSlider = () => {
     className: "center",
     centerMode: true,
     infinite: true,
-    slidesToShow: 1,
+    slidesToShow: 5,
     slidesToScroll: 1,
     speed: 600,
     autoplay: true,
@@ -95,6 +100,42 @@ export const TrandingSlider = () => {
     pauseOnHover: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SampleNextArrow />,
+    responsive: [
+      {
+        breakpoint: 1800,
+        settings: {
+          className: "",
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          centerMode: false,
+          nextArrow: <DisplayNextArrow />,
+          prevArrow: <DisplayNextArrow />,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          className: "",
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          centerMode: false,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          centerMode: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
   return (
     <>
@@ -105,7 +146,7 @@ export const TrandingSlider = () => {
         {data?.map((e: any) => (
           <div
             key={e.id}
-            className="relative w-72 flex"
+            className="relative w-72 flex cursor-pointer"
             onClick={() => openTrandModelFun(e.id)}
           >
             <img

@@ -15,7 +15,7 @@ const SearchList = ({ searchDataList }: props) => {
   const [fullcast, setFullcast] = useState([]);
   const [trailar, setTrailar] = useState("");
 
-  const [seemore, setSeemore] = useState(5);
+  const [seemore, setSeemore] = useState(4);
 
   const openTrandModelFun = async (id: string) => {
     setOpenTrandModel(true);
@@ -67,7 +67,7 @@ const SearchList = ({ searchDataList }: props) => {
 
   const seeMoreFun = (e: any) => {
     e.preventDefault();
-    setSeemore(seemore + 5);
+    setSeemore(seemore + 4);
   };
 
   return (
@@ -78,7 +78,7 @@ const SearchList = ({ searchDataList }: props) => {
         </h1>
         <IoIosArrowForward className="text-pink-500 text-2xl font-bold absolute top-6 left-44" />
       </div>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center md:flex-row md:flex-wrap lg:flex-row lg:flex-wrap lg:relative lg:pb-28 lg:justify-start lg:pl-24">
         {searchDataList
           .filter(
             (e: any) => e.backdrop_path !== null && e.poster_path !== null
@@ -87,7 +87,7 @@ const SearchList = ({ searchDataList }: props) => {
           .map((e: any) => (
             <div
               key={e.id}
-              className="max-w-sm w-full bg-gradient-to-r from-gradientColor1 to-gradientColor2 rounded-lg mt-5 relative"
+              className="max-w-sm w-full bg-gradient-to-r from-gradientColor1 to-gradientColor2 rounded-lg mt-5 relative lg:mr-2 lg:ml-2"
             >
               <div className="flex justify-start items-center">
                 <img
@@ -105,7 +105,7 @@ const SearchList = ({ searchDataList }: props) => {
                   </p>
                   <span
                     onClick={() => openTrandModelFun(e.id)}
-                    className="text-slate-300 font-normal bg-purple-800 pr-3 pl-3 pt-1 pb-2 rounded-lg shadow-xl mt-5"
+                    className="text-slate-300 font-normal bg-purple-800 pr-3 pl-3 pt-1 pb-2 rounded-lg shadow-xl mt-5 cursor-pointer"
                   >
                     ကြည့်မည်
                   </span>
@@ -117,7 +117,10 @@ const SearchList = ({ searchDataList }: props) => {
             </div>
           ))}
 
-        <div className="mt-10 mb-8" onClick={(e) => seeMoreFun(e)}>
+        <div
+          className="mt-10 mb-8 lg:absolute lg:-bottom-8 lg:left-1/2 lg:-translate-x-2/4"
+          onClick={(e) => seeMoreFun(e)}
+        >
           <SeemoreBtn text={"နောက်ထပ်ရှာရန်"} />
         </div>
       </div>

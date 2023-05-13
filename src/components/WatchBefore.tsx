@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { TbLoader3 } from "react-icons/tb";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { TrandingModel } from "./Model";
+import { BsArrowLeftSquare } from "react-icons/bs";
+import { BsArrowRightSquare } from "react-icons/bs";
 const WatchBefore = () => {
   const [openTrandModel, setOpenTrandModel] = useState<boolean>(false);
   const [modeldata, setModelData] = useState([]) as any[];
@@ -12,6 +14,7 @@ const WatchBefore = () => {
   const [fullcast, setFullcast] = useState([]);
   const [trailar, setTrailar] = useState("");
   const [count, setCount] = useState(1);
+  const Scrollref = useRef<any>(null);
   /*Single movie data and transliation api fetching for model.tsx*/
   const openTrandModelFun = async (id: string) => {
     setOpenTrandModel(true);
@@ -83,6 +86,14 @@ const WatchBefore = () => {
   //   )
   // );
 
+  const ScrollLeft = () => {
+    Scrollref.current.scrollLeft += 500;
+  };
+
+  const ScrollRight = () => {
+    Scrollref.current.scrollLeft -= 500;
+  };
+
   if (isLoading) {
     return (
       <TbLoader3 className="text-pink-500 animate-spin text-5xl absolute left-1/2" />
@@ -90,18 +101,28 @@ const WatchBefore = () => {
   }
 
   return (
-    <div className="pt-7 pb-7">
+    <div className="pt-7 pb-7  relative">
       <h1 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block bg-clip-text text-transparent text-lg font-extrabold pt-5 pb-5 mt-5">
         မသေခင် ကြည့်သင့်သော ရုပ်ရှင်များ
       </h1>
-
-      <div className="flex justify-start items-center overflow-x-scroll overflow-y-hidden mt-4">
+      <BsArrowLeftSquare
+        onClick={() => ScrollRight()}
+        className=" text-white text-4xl z-20 absolute -left-10 top-2/4 cursor-pointer hidden  md:block"
+      />
+      <BsArrowRightSquare
+        onClick={() => ScrollLeft()}
+        className=" text-white text-4xl z-20 absolute -right-10 top-2/4 cursor-pointer hidden md:block"
+      />
+      <div
+        ref={Scrollref}
+        className="flex justify-start items-center scrollbar-hide overflow-x-scroll overflow-y-hidden mt-4 scroll-smooth"
+      >
         {data
           ?.filter((e: any) => e.original_language === "en")
           .map((e: any) => (
             <div
               key={e.id}
-              className="flex flex-col  mr-1 ml-1"
+              className="flex flex-col  mr-1 ml-1 cursor-pointer"
               onClick={() => openTrandModelFun(e.id)}
             >
               <img
@@ -109,7 +130,7 @@ const WatchBefore = () => {
                 src={`https://image.tmdb.org/t/p/w500${e.poster_path}`}
                 alt=""
               />
-              <div className="w-44 h-32 bg-zinc-800 relative">
+              <div className="w-44 h-32 bg-zinc-800 relative z-0">
                 <p className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block text-base rounded-sm pr-1 pl-1 text-white mt-3 ml-2">
                   {e.vote_average}
                 </p>
@@ -129,7 +150,7 @@ const WatchBefore = () => {
           onClick={(e: any) => countFun(e.target.dataset)}
           className={`${
             count === 1 ? "bg-purple-500" : "bg-none"
-          } text-white border-2 pr-2 pl-2 mr-1 ml-1`}
+          } text-white border-2 pr-2 pl-2 mr-1 ml-1 cursor-pointer`}
         >
           1
         </p>
@@ -138,7 +159,7 @@ const WatchBefore = () => {
           onClick={(e: any) => countFun(e.target.dataset)}
           className={`${
             count === 2 ? "bg-purple-500" : "bg-none"
-          } text-white border-2 pr-2 pl-2 mr-1 ml-1`}
+          } text-white border-2 pr-2 pl-2 mr-1 ml-1 cursor-pointer`}
         >
           2
         </p>
@@ -147,7 +168,7 @@ const WatchBefore = () => {
           onClick={(e: any) => countFun(e.target.dataset)}
           className={`${
             count === 3 ? "bg-purple-500" : "bg-none"
-          } text-white border-2 pr-2 pl-2 mr-1 ml-1`}
+          } text-white border-2 pr-2 pl-2 mr-1 ml-1 cursor-pointer`}
         >
           3
         </p>

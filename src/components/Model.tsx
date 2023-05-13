@@ -43,13 +43,19 @@ export const TrandingModel = ({
   }, [selectLanguage]);
 
   return (
-    <div className="fixed bg-black w-full h-screen left-0 top-0 overflow-y-scroll overflow-x-hidden">
+    <div className="fixed bg-black w-full h-screen left-0 top-0 overflow-y-scroll overflow-x-hidden z-10 lg:pl-10 lg:pr-10">
       <img
-        className="w-full max-h-full object-cover absolute left-0 top-0"
+        className="w-full max-h-full object-cover absolute left-0 top-0 lg:hidden"
         src={`https://image.tmdb.org/t/p/w500${modeldata.poster_path}`}
         alt="poster"
       />
-      <div className="absolute left-0 bottom-0 bg-gradient-to-t from-black from-20 w-full h-full opacity-95"></div>
+      <img
+        className="w-3/4 h-3/4 object-cover absolute right-0 top-0 hidden lg:block"
+        src={`https://image.tmdb.org/t/p/w500${modeldata.backdrop_path}`}
+        alt="poster"
+      />
+      <div className="absolute left-0 bottom-0 bg-gradient-to-t from-black from-20 w-full h-full opacity-95 lg:bg-gradient-to-t lg:from-black lg:from-15 lg:opacity-30"></div>
+      <div className="absolute left-0 bottom-0 bg-gradient-to-r from-black from-30 w-full h-full opacity-100 hidden lg:block"></div>
       <h1 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block text-xl rounded-sm pl-2 pr-2 font-bold absolute right-2 top-5">
         MRMl
       </h1>
@@ -59,7 +65,7 @@ export const TrandingModel = ({
           "absolute text-black bg-gradient-to-r from-purple-500 to-pink-500 text-3xl top-5 left-2 rounded-full"
         }
       />
-      <div className="flex flex-col z-20 mt-98 pb-24">
+      <div className="flex flex-col z-20 mt-98 pb-24 lg:mt-36">
         {/* <div className=" w-full h-98"></div> */}
         <div className="z-20 flex flex-col justify-center items-start mr-5 ml-5">
           <h4 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block bg-clip-text text-transparent text-3xl font-extrabold">
@@ -88,11 +94,11 @@ export const TrandingModel = ({
           </select>
 
           {language ? (
-            <p className="text-white mt-5 font-Nunito font-medium tracking-wider text-left leading-7">
+            <p className="text-white mt-5 font-Nunito font-medium tracking-wider text-left leading-7 lg:max-w-md">
               {translateOverview}
             </p>
           ) : (
-            <p className="text-white mt-5 font-Nunito font-medium tracking- text-left leading-7">
+            <p className="text-white mt-5 font-Nunito font-medium tracking- text-left leading-7 lg:max-w-md">
               {modeldata.overview}
             </p>
           )}
@@ -106,18 +112,18 @@ export const TrandingModel = ({
             {modeldata.budget} dollar
           </p>
         </div>
-        <h4 className="text-white ml-5 mb-4 font-semibold text-lg mt-12 border-l-4 border-purple-500 pl-2">
+        <h4 className="text-white ml-5 mb-4 font-semibold text-lg mt-12 border-l-4 border-purple-500 pl-2 lg:z-10 lg:mt-28">
           သရုပ်ဆောင်များ ---
         </h4>
-        <div className="flex flex-col mr-1 ml-1 z-20 justify-center items-center">
-          <div className="flex flex-row flex-wrap justify-center items-center">
-            {fullcast.slice(0, actorcount).map((e: any) => (
+        <div className="flex flex-col mr-1 ml-1 z-20 justify-center items-center ">
+          <div className="flex flex-row flex-wrap justify-center items-center lg:justify-start">
+            {fullcast?.slice(0, actorcount).map((e: any) => (
               <div
                 key={e.id}
-                className="flex flex-row max-w-170 w-full bg-gradient-to-r from-gradientColor1 to-gradientColor2 rounded-lg mb-4 mr-1"
+                className="flex flex-row max-w-170 w-full bg-gradient-to-r from-gradientColor1 to-gradientColor2 rounded-lg mb-4 mr-1 lg:max-w-none lg:w-52 lg:mr-2 lg:ml-2"
               >
                 <img
-                  className="w-14 h-14 rounded-full object-cover mr-2 mt-1 mb-1"
+                  className="w-14 h-14 rounded-full object-cover mr-2 mt-1 mb-1 lg:w-24 lg:h-24 lg:mt-2 lg:ml-2 lg:mb-2"
                   src={e.image}
                   alt="actorImage"
                 />
@@ -142,7 +148,7 @@ export const TrandingModel = ({
             ရုပ်ရှင်Trailer ---
           </h4>
           <div className="relative flex justify-center items-center">
-            <div className="relative pt-56 max-w-700 w-full">
+            <div className="relative pt-56 max-w-700 w-full lg:h-98 lg:pt-98">
               <ReactPlayer
                 url={trailar}
                 width="100%"
@@ -208,13 +214,19 @@ export const SearchModel = ({
   }, [selectLanguage]);
 
   return (
-    <div className="fixed bg-black w-full h-screen left-0 top-0 overflow-y-scroll overflow-x-hidden z-20">
+    <div className="fixed bg-black w-full h-screen left-0 top-0 overflow-y-scroll overflow-x-hidden z-20 lg:pl-10 lg:pr-10">
       <img
-        className="w-full max-h-full object-cover absolute left-0 top-0"
+        className="w-full max-h-full object-cover absolute left-0 top-0 lg:hidden"
         src={`https://image.tmdb.org/t/p/w500${modeldata.poster_path}`}
         alt="poster"
       />
-      <div className="absolute left-0 bottom-0 bg-gradient-to-t from-black from-20 w-full h-full opacity-95"></div>
+      <img
+        className="w-3/4 h-3/4 object-cover absolute right-0 top-0 hidden lg:block"
+        src={`https://image.tmdb.org/t/p/w500${modeldata.backdrop_path}`}
+        alt="poster"
+      />
+      <div className="absolute left-0 bottom-0 bg-gradient-to-t from-black from-20 w-full h-full opacity-95 lg:bg-gradient-to-t lg:from-black lg:from-15 lg:opacity-30"></div>
+      <div className="absolute left-0 bottom-0 bg-gradient-to-r from-black from-30 w-full h-full opacity-100 hidden lg:block"></div>
       <h1 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block text-xl rounded-sm pl-2 pr-2 font-bold absolute right-2 top-5">
         MRMl
       </h1>
@@ -224,7 +236,7 @@ export const SearchModel = ({
           "absolute text-black bg-gradient-to-r from-purple-500 to-pink-500 text-3xl top-5 left-2 rounded-full"
         }
       />
-      <div className="flex flex-col z-20 mt-98 pb-24">
+      <div className="flex flex-col z-20 mt-98 pb-24 lg:mt-36">
         {/* <div className=" w-full h-98"></div> */}
         <div className="z-20 flex flex-col justify-center items-start mr-5 ml-5">
           <h4 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block bg-clip-text text-transparent text-3xl font-extrabold">
@@ -253,11 +265,11 @@ export const SearchModel = ({
           </select>
 
           {language ? (
-            <p className="text-white mt-5 font-Nunito font-medium tracking-wider text-left leading-7">
+            <p className="text-white mt-5 font-Nunito font-medium tracking-wider text-left leading-7 lg:max-w-md">
               {translateOverview}
             </p>
           ) : (
-            <p className="text-white mt-5 font-Nunito font-medium tracking- text-left leading-7">
+            <p className="text-white mt-5 font-Nunito font-medium tracking- text-left leading-7 lg:max-w-md">
               {modeldata.overview}
             </p>
           )}
@@ -271,18 +283,18 @@ export const SearchModel = ({
             {modeldata.budget} dollar
           </p>
         </div>
-        <h4 className="text-white ml-5 mb-4 font-semibold text-lg mt-12 border-l-4 border-purple-500 pl-2">
+        <h4 className="text-white ml-5 mb-4 font-semibold text-lg mt-12 border-l-4 border-purple-500 pl-2 lg:z-10 lg:mt-28">
           သရုပ်ဆောင်များ ---
         </h4>
         <div className="flex flex-col mr-1 ml-1 z-20 justify-center items-center">
-          <div className="flex flex-row flex-wrap justify-center items-center">
-            {fullcast.slice(0, actorcount).map((e: any) => (
+          <div className="flex flex-row flex-wrap justify-center items-center lg:justify-start">
+            {fullcast?.slice(0, actorcount).map((e: any) => (
               <div
                 key={e.id}
-                className="flex flex-row max-w-170 w-full bg-gradient-to-r from-gradientColor1 to-gradientColor2 rounded-lg mb-4 mr-1"
+                className="flex flex-row max-w-170 w-full bg-gradient-to-r from-gradientColor1 to-gradientColor2 rounded-lg mb-4 mr-1  lg:max-w-none lg:w-52 lg:mr-2 lg:ml-2"
               >
                 <img
-                  className="w-14 h-14 rounded-full object-cover mr-2 mt-1 mb-1"
+                  className="w-14 h-14 rounded-full object-cover mr-2 mt-1 mb-1  lg:w-24 lg:h-24 lg:mt-2 lg:ml-2 lg:mb-2"
                   src={e.image}
                   alt="actorImage"
                 />
@@ -307,7 +319,7 @@ export const SearchModel = ({
             ရုပ်ရှင်Trailer ---
           </h4>
           <div className="relative flex justify-center items-center">
-            <div className="relative pt-56 max-w-700 w-full">
+            <div className="relative pt-56 max-w-700 w-full lg:h-98 lg:pt-98">
               <ReactPlayer
                 url={trailar}
                 width="100%"
