@@ -4,7 +4,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SearchList from "./SearchList";
 
-const Search = () => {
+interface props {
+  openTrandModel: boolean;
+  setOpenTrandModel: any;
+}
+
+const Search = ({ openTrandModel, setOpenTrandModel }: props) => {
   const [searchInput, setSearchinput] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
   const [searchDataList, setSearchDataList] = useState([]);
@@ -51,7 +56,11 @@ const Search = () => {
               // <h1 className="text-white">Loading</h1>
               <TbLoader3 className="text-pink-500 animate-spin text-5xl mt-24 mb-24" />
             ) : (
-              <SearchList searchDataList={searchDataList} />
+              <SearchList
+                searchDataList={searchDataList}
+                openTrandModel={openTrandModel}
+                setOpenTrandModel={setOpenTrandModel}
+              />
             )}
           </div>
         ) : (

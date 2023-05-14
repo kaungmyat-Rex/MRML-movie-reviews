@@ -10,6 +10,14 @@ interface props {
   trailar: any;
 }
 
+interface searchprops {
+  modeldata1: any;
+  setOpenTrandModel: any;
+  translateOverview: any;
+  fullcast: any;
+  trailar: any;
+}
+
 export const TrandingModel = ({
   setOpenTrandModel,
   modeldata,
@@ -46,12 +54,12 @@ export const TrandingModel = ({
     <div className="fixed bg-black w-full h-screen left-0 top-0 overflow-y-scroll overflow-x-hidden z-10 lg:pl-10 lg:pr-10">
       <img
         className="w-full max-h-full object-cover absolute left-0 top-0 lg:hidden"
-        src={`https://image.tmdb.org/t/p/w500${modeldata.poster_path}`}
+        src={`https://image.tmdb.org/t/p/w500${modeldata?.poster_path}`}
         alt="poster"
       />
       <img
         className="w-3/4 h-3/4 object-cover absolute right-0 top-0 hidden lg:block"
-        src={`https://image.tmdb.org/t/p/w500${modeldata.backdrop_path}`}
+        src={`https://image.tmdb.org/t/p/w500${modeldata?.backdrop_path}`}
         alt="poster"
       />
       <div className="absolute left-0 bottom-0 bg-gradient-to-t from-black from-20 w-full h-full opacity-95 lg:bg-gradient-to-t lg:from-black lg:from-15 lg:opacity-30"></div>
@@ -183,11 +191,11 @@ export const TrandingModel = ({
 
 export const SearchModel = ({
   setOpenTrandModel,
-  modeldata,
+  modeldata1,
   translateOverview,
   fullcast,
   trailar,
-}: props) => {
+}: searchprops) => {
   // useEffect(() => {
   //   axios
   //     .get(
@@ -217,12 +225,12 @@ export const SearchModel = ({
     <div className="fixed bg-black w-full h-screen left-0 top-0 overflow-y-scroll overflow-x-hidden z-20 lg:pl-10 lg:pr-10">
       <img
         className="w-full max-h-full object-cover absolute left-0 top-0 lg:hidden"
-        src={`https://image.tmdb.org/t/p/w500${modeldata.poster_path}`}
+        src={`https://image.tmdb.org/t/p/w500${modeldata1.poster_path}`}
         alt="poster"
       />
       <img
         className="w-3/4 h-3/4 object-cover absolute right-0 top-0 hidden lg:block"
-        src={`https://image.tmdb.org/t/p/w500${modeldata.backdrop_path}`}
+        src={`https://image.tmdb.org/t/p/w500${modeldata1.backdrop_path}`}
         alt="poster"
       />
       <div className="absolute left-0 bottom-0 bg-gradient-to-t from-black from-20 w-full h-full opacity-95 lg:bg-gradient-to-t lg:from-black lg:from-15 lg:opacity-30"></div>
@@ -240,17 +248,17 @@ export const SearchModel = ({
         {/* <div className=" w-full h-98"></div> */}
         <div className="z-20 flex flex-col justify-center items-start mr-5 ml-5">
           <h4 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block bg-clip-text text-transparent text-3xl font-extrabold">
-            {modeldata.original_title}
+            {modeldata1.original_title}
           </h4>
           <div className="flex flex-row text-gray-400 text-sm mt-5">
-            <p className="mr-2">{modeldata.release_date}</p> |{" "}
-            <p className="ml-2 mr-2">{modeldata.original_language}</p>|
+            <p className="mr-2">{modeldata1.release_date}</p> |{" "}
+            <p className="ml-2 mr-2">{modeldata1.original_language}</p>|
             <p className="ml-2 mr-2">
-              {modeldata.genres?.slice(0, 1).map((e: any) => e.name)}
+              {modeldata1.genres?.slice(0, 1).map((e: any) => e.name)}
             </p>
             |
             <p className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block rounded-sm pl-2 pr-2 font-extrabold text-black ml-2">
-              {modeldata.vote_average?.toFixed(1).substring(0, 3)}
+              {modeldata1.vote_average?.toFixed(1).substring(0, 3)}
             </p>
           </div>
           <select
@@ -270,17 +278,17 @@ export const SearchModel = ({
             </p>
           ) : (
             <p className="text-white mt-5 font-Nunito font-medium tracking- text-left leading-7 lg:max-w-md">
-              {modeldata.overview}
+              {modeldata1.overview}
             </p>
           )}
 
           <p className="text-white font-Nunito font-medium mt-7">
             <span className="text-gray-400 text-sm">ရုပ်ရှင်ကြာချိန် : </span>
-            {modeldata.runtime} min
+            {modeldata1.runtime} min
           </p>
           <p className="text-white font-Nunito font-medium mt-2">
             <span className="text-gray-400 text-sm">ရုပ်ရှင်Budget : </span>
-            {modeldata.budget} dollar
+            {modeldata1.budget} dollar
           </p>
         </div>
         <h4 className="text-white ml-5 mb-4 font-semibold text-lg mt-12 border-l-4 border-purple-500 pl-2 lg:z-10 lg:mt-28">
@@ -335,7 +343,7 @@ export const SearchModel = ({
           </h4>
 
           <div className="flex flex-row flex-wrap justify-start items-center ml-3">
-            {modeldata.production_companies
+            {modeldata1.production_companies
               ?.filter((e: any) => e.logo_path !== null)
               .map((e: any) => (
                 <img

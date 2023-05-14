@@ -6,6 +6,13 @@ import Slider from "react-slick";
 import { useState } from "react";
 import { TrandingModel } from "./Model";
 
+interface props {
+  openTrandModel: boolean;
+  setOpenTrandModel: any;
+  modeldata: any;
+  setModelData: any;
+}
+
 /* react-slick arrow hide function*/
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
@@ -23,9 +30,12 @@ function DisplayNextArrow(props: any) {
   return <div className={className} style={{ ...style }} onClick={onClick} />;
 }
 
-export const TrandingSlider = () => {
-  const [openTrandModel, setOpenTrandModel] = useState<boolean>(false);
-  const [modeldata, setModelData] = useState([]) as any[];
+export const TrandingSlider = ({
+  openTrandModel,
+  setOpenTrandModel,
+  modeldata,
+  setModelData,
+}: props) => {
   const [translateOverview, setTranslateOverview] = useState("");
   const [fullcast, setFullcast] = useState([]);
   const [trailar, setTrailar] = useState("");

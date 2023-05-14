@@ -1,5 +1,7 @@
 interface props {
   searchDataList: any;
+  openTrandModel: boolean;
+  setOpenTrandModel: any;
 }
 import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
@@ -8,9 +10,12 @@ import { SeemoreBtn } from "./Button";
 import { SearchModel } from "./Model";
 import axios from "axios";
 
-const SearchList = ({ searchDataList }: props) => {
-  const [openTrandModel, setOpenTrandModel] = useState<boolean>(false);
-  const [modeldata, setModelData] = useState([]) as any[];
+const SearchList = ({
+  searchDataList,
+  openTrandModel,
+  setOpenTrandModel,
+}: props) => {
+  const [modeldata1, setModelData1] = useState([]) as any[];
   const [translateOverview, setTranslateOverview] = useState("");
   const [fullcast, setFullcast] = useState([]);
   const [trailar, setTrailar] = useState("");
@@ -24,7 +29,7 @@ const SearchList = ({ searchDataList }: props) => {
         `https://api.themoviedb.org/3/movie/${id}?api_key=97daa3077452cbe6f793644c1afc0868&language=en-US`
       )
       .then((res) => {
-        setModelData(res.data);
+        setModelData1(res.data);
 
         axios
           .get(
@@ -126,7 +131,7 @@ const SearchList = ({ searchDataList }: props) => {
       </div>
       <div className={`${openTrandModel ? "block" : "hidden"}`}>
         <SearchModel
-          modeldata={modeldata}
+          modeldata1={modeldata1}
           setOpenTrandModel={setOpenTrandModel}
           translateOverview={translateOverview}
           fullcast={fullcast}

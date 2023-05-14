@@ -7,9 +7,20 @@ import "slick-carousel/slick/slick-theme.css";
 import { TrandingModel } from "./Model";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { BsArrowRightSquare } from "react-icons/bs";
-const WatchBefore = () => {
-  const [openTrandModel, setOpenTrandModel] = useState<boolean>(false);
-  const [modeldata, setModelData] = useState([]) as any[];
+
+interface props {
+  openTrandModel: boolean;
+  setOpenTrandModel: any;
+  modeldata: any;
+  setModelData: any;
+}
+
+const WatchBefore = ({
+  openTrandModel,
+  setOpenTrandModel,
+  modeldata,
+  setModelData,
+}: props) => {
   const [translateOverview, setTranslateOverview] = useState("");
   const [fullcast, setFullcast] = useState([]);
   const [trailar, setTrailar] = useState("");
@@ -101,7 +112,7 @@ const WatchBefore = () => {
   }
 
   return (
-    <div className="pt-7 pb-7  relative">
+    <div className="pt-7 pb-7 relative">
       <h1 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block bg-clip-text text-transparent text-lg font-extrabold pt-5 pb-5 mt-5">
         မသေခင် ကြည့်သင့်သော ရုပ်ရှင်များ
       </h1>
