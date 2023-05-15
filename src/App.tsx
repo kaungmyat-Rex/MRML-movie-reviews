@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TrandingSlider } from "./components/Tranding";
 import Search from "./components/Search";
 import WatchBefore from "./components/WatchBefore";
-import CeleNews from "./components/CeleNews";
+// import CeleNews from "./components/CeleNews";
 function App() {
   const Client = new QueryClient({
     defaultOptions: {
@@ -17,6 +17,9 @@ function App() {
 
   const [openTrandModel, setOpenTrandModel] = useState<boolean>(false);
   const [modeldata, setModelData] = useState([]) as any[];
+  const [translateOverview, setTranslateOverview] = useState("");
+  const [fullcast, setFullcast] = useState([]);
+  const [trailar, setTrailar] = useState("");
 
   return (
     <div className={`App ${openTrandModel ? "app-fixed" : ""}`}>
@@ -32,14 +35,26 @@ function App() {
             setOpenTrandModel={setOpenTrandModel}
             modeldata={modeldata}
             setModelData={setModelData}
+            translateOverview={translateOverview}
+            setTranslateOverview={setTranslateOverview}
+            fullcast={fullcast}
+            setFullcast={setFullcast}
+            trailar={trailar}
+            setTrailar={setTrailar}
           />
           <WatchBefore
             openTrandModel={openTrandModel}
             setOpenTrandModel={setOpenTrandModel}
             modeldata={modeldata}
             setModelData={setModelData}
+            translateOverview={translateOverview}
+            setTranslateOverview={setTranslateOverview}
+            fullcast={fullcast}
+            setFullcast={setFullcast}
+            trailar={trailar}
+            setTrailar={setTrailar}
           />
-          <CeleNews />
+          {/* <CeleNews /> */}
         </div>
       </QueryClientProvider>
     </div>

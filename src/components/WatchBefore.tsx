@@ -13,6 +13,12 @@ interface props {
   setOpenTrandModel: any;
   modeldata: any;
   setModelData: any;
+  translateOverview: any;
+  setTranslateOverview: any;
+  fullcast: any;
+  setFullcast: any;
+  trailar: any;
+  setTrailar: any;
 }
 
 const WatchBefore = ({
@@ -20,10 +26,13 @@ const WatchBefore = ({
   setOpenTrandModel,
   modeldata,
   setModelData,
+  translateOverview,
+  setTranslateOverview,
+  fullcast,
+  setFullcast,
+  trailar,
+  setTrailar,
 }: props) => {
-  const [translateOverview, setTranslateOverview] = useState("");
-  const [fullcast, setFullcast] = useState([]);
-  const [trailar, setTrailar] = useState("");
   const [count, setCount] = useState(1);
   const Scrollref = useRef<any>(null);
   /*Single movie data and transliation api fetching for model.tsx*/

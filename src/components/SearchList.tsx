@@ -16,9 +16,9 @@ const SearchList = ({
   setOpenTrandModel,
 }: props) => {
   const [modeldata1, setModelData1] = useState([]) as any[];
-  const [translateOverview, setTranslateOverview] = useState("");
-  const [fullcast, setFullcast] = useState([]);
-  const [trailar, setTrailar] = useState("");
+  const [translateOverview1, setTranslateOverview1] = useState("");
+  const [fullcast1, setFullcast1] = useState([]);
+  const [trailar1, setTrailar1] = useState("");
 
   const [seemore, setSeemore] = useState(4);
 
@@ -35,13 +35,13 @@ const SearchList = ({
           .get(
             `https://imdb-api.com/en/API/FullCast/k_z20zir6t/${res.data.imdb_id}`
           )
-          .then((res) => setFullcast(res.data.actors));
+          .then((res) => setFullcast1(res.data.actors));
         axios
           .get(
             `https://imdb-api.com/en/API/YouTubeTrailer/k_z20zir6t/${res.data.imdb_id}`
           )
           .then((res) => {
-            setTrailar(res.data.videoUrl);
+            setTrailar1(res.data.videoUrl);
             // const url = res.data.videoUrl;
             // const regex =
             //   /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})(?:[\&\?].*?)?(?:#t=(\d+))?$/;
@@ -66,7 +66,7 @@ const SearchList = ({
           },
         };
 
-        axios.request(options).then((res) => setTranslateOverview(res.data));
+        axios.request(options).then((res) => setTranslateOverview1(res.data));
       });
   };
 
@@ -133,9 +133,9 @@ const SearchList = ({
         <SearchModel
           modeldata1={modeldata1}
           setOpenTrandModel={setOpenTrandModel}
-          translateOverview={translateOverview}
-          fullcast={fullcast}
-          trailar={trailar}
+          translateOverview1={translateOverview1}
+          fullcast1={fullcast1}
+          trailar1={trailar1}
         />
       </div>
     </>

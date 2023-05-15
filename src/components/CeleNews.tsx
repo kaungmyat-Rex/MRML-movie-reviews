@@ -4,13 +4,30 @@ import { SeemoreBtn } from "./Button";
 import { useState } from "react";
 const CeleNews = () => {
   const [celeCounter, setCeleCounter] = useState(4);
+
   const { data } = useQuery(["celenews"], () => {
-    return axios
-      .get(
-        "https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=8b1444b75dce4b77a8945b36517ace18"
-      )
-      .then((res) => res.data.articles);
+    // return axios
+    //   .get(
+    //     "https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=8b1444b75dce4b77a8945b36517ace18"
+    //   )
+    //   .then((res) => res.data.articles);
+
+    const options = {
+      method: "GET",
+      url: "https://imdb8.p.rapidapi.com/actors/get-all-news",
+      params: {
+        nconst: "nm0001667",
+      },
+      headers: {
+        "X-RapidAPI-Key": "51fa1f2a40mshe0b6b6e99611d99p1c6332jsn9b7eda1a2bc7",
+        "X-RapidAPI-Host": "imdb8.p.rapidapi.com",
+      },
+    };
+
+    return axios.request(options).then((res) => res.data);
   });
+
+  console.log(data);
 
   const CeleNewsMoreFun = (e: any) => {
     e.preventDefault();

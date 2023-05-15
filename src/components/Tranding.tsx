@@ -3,7 +3,7 @@ import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { useState } from "react";
+
 import { TrandingModel } from "./Model";
 
 interface props {
@@ -11,6 +11,12 @@ interface props {
   setOpenTrandModel: any;
   modeldata: any;
   setModelData: any;
+  translateOverview: any;
+  setTranslateOverview: any;
+  fullcast: any;
+  setFullcast: any;
+  trailar: any;
+  setTrailar: any;
 }
 
 /* react-slick arrow hide function*/
@@ -35,10 +41,13 @@ export const TrandingSlider = ({
   setOpenTrandModel,
   modeldata,
   setModelData,
+  translateOverview,
+  setTranslateOverview,
+  fullcast,
+  setFullcast,
+  trailar,
+  setTrailar,
 }: props) => {
-  const [translateOverview, setTranslateOverview] = useState("");
-  const [fullcast, setFullcast] = useState([]);
-  const [trailar, setTrailar] = useState("");
   /*Single movie data and transliation api fetching for model.tsx*/
   const openTrandModelFun = async (id: string) => {
     setOpenTrandModel(true);

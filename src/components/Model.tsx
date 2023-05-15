@@ -13,9 +13,9 @@ interface props {
 interface searchprops {
   modeldata1: any;
   setOpenTrandModel: any;
-  translateOverview: any;
-  fullcast: any;
-  trailar: any;
+  translateOverview1: any;
+  fullcast1: any;
+  trailar1: any;
 }
 
 export const TrandingModel = ({
@@ -192,9 +192,9 @@ export const TrandingModel = ({
 export const SearchModel = ({
   setOpenTrandModel,
   modeldata1,
-  translateOverview,
-  fullcast,
-  trailar,
+  translateOverview1,
+  fullcast1,
+  trailar1,
 }: searchprops) => {
   // useEffect(() => {
   //   axios
@@ -274,7 +274,7 @@ export const SearchModel = ({
 
           {language ? (
             <p className="text-white mt-5 font-Nunito font-medium tracking-wider text-left leading-7 lg:max-w-md">
-              {translateOverview}
+              {translateOverview1}
             </p>
           ) : (
             <p className="text-white mt-5 font-Nunito font-medium tracking- text-left leading-7 lg:max-w-md">
@@ -296,7 +296,7 @@ export const SearchModel = ({
         </h4>
         <div className="flex flex-col mr-1 ml-1 z-20 justify-center items-center">
           <div className="flex flex-row flex-wrap justify-center items-center lg:justify-start">
-            {fullcast?.slice(0, actorcount).map((e: any) => (
+            {fullcast1?.slice(0, actorcount).map((e: any) => (
               <div
                 key={e.id}
                 className="flex flex-row max-w-170 w-full bg-gradient-to-r from-gradientColor1 to-gradientColor2 rounded-lg mb-4 mr-1  lg:max-w-none lg:w-52 lg:mr-2 lg:ml-2"
@@ -329,7 +329,7 @@ export const SearchModel = ({
           <div className="relative flex justify-center items-center">
             <div className="relative pt-56 max-w-700 w-full lg:h-98 lg:pt-98">
               <ReactPlayer
-                url={trailar}
+                url={trailar1}
                 width="100%"
                 height="100%"
                 className="absolute top-0 left-0"
