@@ -17,6 +17,7 @@ interface props {
   setFullcast: any;
   trailar: any;
   setTrailar: any;
+  setopenSearchList: any;
 }
 
 /* react-slick arrow hide function*/
@@ -47,9 +48,11 @@ export const TrandingSlider = ({
   setFullcast,
   trailar,
   setTrailar,
+  setopenSearchList,
 }: props) => {
   /*Single movie data and transliation api fetching for model.tsx*/
   const openTrandModelFun = async (id: string) => {
+    setopenSearchList(false);
     setOpenTrandModel(true);
     await axios
       .get(

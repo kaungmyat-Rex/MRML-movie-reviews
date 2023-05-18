@@ -19,6 +19,7 @@ interface props {
   setFullcast: any;
   trailar: any;
   setTrailar: any;
+  setopenSearchList: any;
 }
 
 const WatchBefore = ({
@@ -32,11 +33,13 @@ const WatchBefore = ({
   setFullcast,
   trailar,
   setTrailar,
+  setopenSearchList,
 }: props) => {
   const [count, setCount] = useState(1);
   const Scrollref = useRef<any>(null);
   /*Single movie data and transliation api fetching for model.tsx*/
   const openTrandModelFun = async (id: string) => {
+    setopenSearchList(false);
     setOpenTrandModel(true);
     await axios
       .get(

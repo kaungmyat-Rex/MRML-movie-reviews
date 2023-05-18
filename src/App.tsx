@@ -20,7 +20,7 @@ function App() {
   const [translateOverview, setTranslateOverview] = useState("");
   const [fullcast, setFullcast] = useState([]);
   const [trailar, setTrailar] = useState("");
-
+  const [openSearchList, setopenSearchList] = useState(false);
   return (
     <div className={`App ${openTrandModel ? "app-fixed" : ""}`}>
       <QueryClientProvider client={Client}>
@@ -29,6 +29,8 @@ function App() {
           <Search
             openTrandModel={openTrandModel}
             setOpenTrandModel={setOpenTrandModel}
+            openSearchList={openSearchList}
+            setopenSearchList={setopenSearchList}
           />
           <TrandingSlider
             openTrandModel={openTrandModel}
@@ -41,6 +43,7 @@ function App() {
             setFullcast={setFullcast}
             trailar={trailar}
             setTrailar={setTrailar}
+            setopenSearchList={setopenSearchList}
           />
           <WatchBefore
             openTrandModel={openTrandModel}
@@ -53,6 +56,7 @@ function App() {
             setFullcast={setFullcast}
             trailar={trailar}
             setTrailar={setTrailar}
+            setopenSearchList={setopenSearchList}
           />
           {/* <CeleNews /> */}
         </div>

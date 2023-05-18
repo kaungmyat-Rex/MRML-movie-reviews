@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
-
+import { BiMoviePlay } from "react-icons/bi";
 import ReactPlayer from "react-player";
 interface props {
   modeldata: any;
@@ -16,6 +16,7 @@ interface searchprops {
   translateOverview1: any;
   fullcast1: any;
   trailar1: any;
+  setModelData1: any;
 }
 
 export const TrandingModel = ({
@@ -119,6 +120,18 @@ export const TrandingModel = ({
             <span className="text-gray-400 text-sm">ရုပ်ရှင်Budget : </span>
             {modeldata.budget} dollar
           </p>
+
+          <a
+            target="_blank"
+            href={`https://channelmyanmar.org/${modeldata?.original_title?.replace(
+              /\s+/g,
+              "-"
+            )}`}
+            className="bg-gradient-to-r from-purple-500 to-pink-500 flex items-center text-2xl rounded-sm pl-2 pr-2 pt-1 pb-1 font-bold mt-8 cursor-pointer hover:text-white"
+          >
+            <BiMoviePlay />
+            <span className="text-lg ml-1">Watch</span>
+          </a>
         </div>
         <h4 className="text-white ml-5 mb-4 font-semibold text-lg mt-12 border-l-4 border-purple-500 pl-2 lg:z-10 lg:mt-28">
           သရုပ်ဆောင်များ ---
@@ -195,6 +208,7 @@ export const SearchModel = ({
   translateOverview1,
   fullcast1,
   trailar1,
+  setModelData1,
 }: searchprops) => {
   // useEffect(() => {
   //   axios
@@ -221,6 +235,11 @@ export const SearchModel = ({
     }
   }, [selectLanguage]);
 
+  const CloseSearchModel = () => {
+    setModelData1([]);
+    setOpenTrandModel(false);
+  };
+
   return (
     <div className="fixed bg-black w-full h-screen left-0 top-0 overflow-y-scroll overflow-x-hidden z-20 lg:pl-10 lg:pr-10">
       <img
@@ -239,7 +258,7 @@ export const SearchModel = ({
         MRMl
       </h1>
       <IoIosArrowDropleftCircle
-        onClick={() => setOpenTrandModel(false)}
+        onClick={() => CloseSearchModel()}
         className={
           "absolute text-black bg-gradient-to-r from-purple-500 to-pink-500 text-3xl top-5 left-2 rounded-full"
         }
@@ -290,6 +309,17 @@ export const SearchModel = ({
             <span className="text-gray-400 text-sm">ရုပ်ရှင်Budget : </span>
             {modeldata1.budget} dollar
           </p>
+          <a
+            target="_blank"
+            href={`https://channelmyanmar.org/${modeldata1?.original_title?.replace(
+              /\s+/g,
+              "-"
+            )}`}
+            className="bg-gradient-to-r from-purple-500 to-pink-500 flex items-center text-2xl rounded-sm pl-2 pr-2 pt-1 pb-1 font-bold mt-8 cursor-pointer hover:text-white"
+          >
+            <BiMoviePlay />
+            <span className="text-lg ml-1">Watch</span>
+          </a>
         </div>
         <h4 className="text-white ml-5 mb-4 font-semibold text-lg mt-12 border-l-4 border-purple-500 pl-2 lg:z-10 lg:mt-28">
           သရုပ်ဆောင်များ ---

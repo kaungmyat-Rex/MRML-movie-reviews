@@ -136,6 +136,7 @@ const SearchList = ({
           translateOverview1={translateOverview1}
           fullcast1={fullcast1}
           trailar1={trailar1}
+          setModelData1={setModelData1}
         />
       </div>
     </>

@@ -7,13 +7,19 @@ import SearchList from "./SearchList";
 interface props {
   openTrandModel: boolean;
   setOpenTrandModel: any;
+  openSearchList: boolean;
+  setopenSearchList: any;
 }
 
-const Search = ({ openTrandModel, setOpenTrandModel }: props) => {
+const Search = ({
+  openTrandModel,
+  setOpenTrandModel,
+  openSearchList,
+  setopenSearchList,
+}: props) => {
   const [searchInput, setSearchinput] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
   const [searchDataList, setSearchDataList] = useState([]);
-  const [openSearchList, setopenSearchList] = useState(false);
 
   useEffect(() => {
     if (searchInput === "") {
