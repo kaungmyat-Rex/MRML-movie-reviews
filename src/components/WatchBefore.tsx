@@ -130,11 +130,11 @@ const WatchBefore = ({
       </h1>
       <BsArrowLeftSquare
         onClick={() => ScrollRight()}
-        className=" text-white text-4xl z-20 absolute -left-10 top-2/4 cursor-pointer hidden  md:block"
+        className=" text-white text-4xl z-20 absolute left-10 top-99 cursor-pointer md:-left-10 md:top-2/4 "
       />
       <BsArrowRightSquare
         onClick={() => ScrollLeft()}
-        className=" text-white text-4xl z-20 absolute -right-10 top-2/4 cursor-pointer hidden md:block"
+        className=" text-white text-4xl z-20 absolute right-10 top-99 cursor-pointer md:-right-10 md:top-2/4"
       />
       <div
         ref={Scrollref}

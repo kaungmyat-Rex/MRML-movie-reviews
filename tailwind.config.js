@@ -21,6 +21,7 @@ export default {
         96: "1px",
         98: "400px",
         56: "56.25%",
+        99: "520px",
       },
       gradientColorStopPositions: {
         10: "-50%",

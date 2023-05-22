@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TrandingSlider } from "./components/Tranding";
 import Search from "./components/Search";
 import WatchBefore from "./components/WatchBefore";
+import Footer from "./components/Footer";
 // import CeleNews from "./components/CeleNews";
 function App() {
   const Client = new QueryClient({
@@ -60,6 +61,7 @@ function App() {
           />
           {/* <CeleNews /> */}
         </div>
+        <Footer />
       </QueryClientProvider>
     </div>
   );
