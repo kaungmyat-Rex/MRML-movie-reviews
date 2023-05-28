@@ -17,11 +17,11 @@ function App() {
   });
 
   const [openTrandModel, setOpenTrandModel] = useState<boolean>(false);
-  const [modeldata, setModelData] = useState([]) as any[];
-  const [translateOverview, setTranslateOverview] = useState("");
-  const [fullcast, setFullcast] = useState([]);
-  const [trailar, setTrailar] = useState("");
-  const [openSearchList, setopenSearchList] = useState(false);
+  const [modeldata, setModelData] = useState<[]>([]);
+  const [translateOverview, setTranslateOverview] = useState<string>("");
+  const [fullcast, setFullcast] = useState<[]>([]);
+  const [trailar, setTrailar] = useState<string>("");
+  const [openSearchList, setopenSearchList] = useState<boolean>(false);
   return (
     <div className={`App ${openTrandModel ? "app-fixed" : ""}`}>
       <QueryClientProvider client={Client}>

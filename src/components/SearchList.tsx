@@ -1,7 +1,7 @@
 interface props {
   searchDataList: any;
   openTrandModel: boolean;
-  setOpenTrandModel: any;
+  setOpenTrandModel: (openTrandModel: boolean) => void;
 }
 import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
@@ -17,12 +17,12 @@ const SearchList = ({
 }: props) => {
   const [modeldata1, setModelData1] = useState([]) as any[];
   const [translateOverview1, setTranslateOverview1] = useState("");
-  const [fullcast1, setFullcast1] = useState([]);
-  const [trailar1, setTrailar1] = useState("");
+  const [fullcast1, setFullcast1] = useState<[]>([]);
+  const [trailar1, setTrailar1] = useState<string>("");
 
-  const [seemore, setSeemore] = useState(4);
+  const [seemore, setSeemore] = useState<number>(4);
 
-  const openTrandModelFun = async (id: string) => {
+  const openTrandModelFun = async (id: string): Promise<void> => {
     setOpenTrandModel(true);
     await axios
       .get(
@@ -70,7 +70,7 @@ const SearchList = ({
       });
   };
 
-  const seeMoreFun = (e: any) => {
+  const seeMoreFun = (e: React.MouseEvent): void => {
     e.preventDefault();
     setSeemore(seemore + 4);
   };

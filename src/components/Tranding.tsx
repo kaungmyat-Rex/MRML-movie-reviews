@@ -8,16 +8,16 @@ import { TrandingModel } from "./Model";
 
 interface props {
   openTrandModel: boolean;
-  setOpenTrandModel: any;
-  modeldata: any;
-  setModelData: any;
-  translateOverview: any;
-  setTranslateOverview: any;
-  fullcast: any;
-  setFullcast: any;
-  trailar: any;
-  setTrailar: any;
-  setopenSearchList: any;
+  setOpenTrandModel: (openTrandModel: boolean) => void;
+  modeldata: [];
+  setModelData: (modeldata: []) => void;
+  translateOverview: string;
+  setTranslateOverview: (translateOverview: string) => void;
+  fullcast: [];
+  setFullcast: (fullcast: []) => void;
+  trailar: string;
+  setTrailar: (trailar: string) => void;
+  setopenSearchList: (openSearchList: boolean) => void;
 }
 
 /* react-slick arrow hide function*/
@@ -51,7 +51,7 @@ export const TrandingSlider = ({
   setopenSearchList,
 }: props) => {
   /*Single movie data and transliation api fetching for model.tsx*/
-  const openTrandModelFun = async (id: string) => {
+  const openTrandModelFun = async (id: string): Promise<void> => {
     setopenSearchList(false);
     setOpenTrandModel(true);
     await axios
@@ -97,6 +97,8 @@ export const TrandingSlider = ({
         };
 
         axios.request(options).then((res) => setTranslateOverview(res.data));
+
+        console.log(trailar);
       });
   };
 
@@ -159,6 +161,8 @@ export const TrandingSlider = ({
       },
     ],
   };
+  // let datatest = data?.map((e: any) => e.vote_average)[2];
+  // console.log(Math.floor(datatest));
   return (
     <>
       <h1 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block bg-clip-text text-transparent text-lg font-extrabold pt-5 pb-5 mt-5">
@@ -184,6 +188,7 @@ export const TrandingSlider = ({
             </h4>
             <span className="absolute bg-gradient-to-r from-purple-500 to-pink-500 inline-block text-lg rounded-full pl-2 pr-2 pt-2 pb-2 font-bold -top-2 right-3 text-black">
               {e.vote_average}
+              {e.vote_average === Math.floor(e.vote_average) ? ".0" : ""}
             </span>
           </div>
         ))}

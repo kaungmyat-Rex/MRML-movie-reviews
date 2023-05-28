@@ -10,16 +10,16 @@ import { BsArrowRightSquare } from "react-icons/bs";
 
 interface props {
   openTrandModel: boolean;
-  setOpenTrandModel: any;
-  modeldata: any;
-  setModelData: any;
-  translateOverview: any;
-  setTranslateOverview: any;
-  fullcast: any;
-  setFullcast: any;
-  trailar: any;
-  setTrailar: any;
-  setopenSearchList: any;
+  setOpenTrandModel: (openTrandModel: boolean) => void;
+  modeldata: [];
+  setModelData: (modeldata: []) => void;
+  translateOverview: string;
+  setTranslateOverview: (translateOverview: string) => void;
+  fullcast: [];
+  setFullcast: (fullcast: []) => void;
+  trailar: string;
+  setTrailar: (trailar: string) => void;
+  setopenSearchList: (openSearchList: boolean) => void;
 }
 
 const WatchBefore = ({
@@ -35,10 +35,10 @@ const WatchBefore = ({
   setTrailar,
   setopenSearchList,
 }: props) => {
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState<number>(1);
   const Scrollref = useRef<any>(null);
   /*Single movie data and transliation api fetching for model.tsx*/
-  const openTrandModelFun = async (id: string) => {
+  const openTrandModelFun = async (id: string): Promise<void> => {
     setopenSearchList(false);
     setOpenTrandModel(true);
     await axios
@@ -109,11 +109,11 @@ const WatchBefore = ({
   //   )
   // );
 
-  const ScrollLeft = () => {
+  const ScrollLeft = (): void => {
     Scrollref.current.scrollLeft += 500;
   };
 
-  const ScrollRight = () => {
+  const ScrollRight = (): void => {
     Scrollref.current.scrollLeft -= 500;
   };
 

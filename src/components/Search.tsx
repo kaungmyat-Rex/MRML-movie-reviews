@@ -6,9 +6,9 @@ import SearchList from "./SearchList";
 
 interface props {
   openTrandModel: boolean;
-  setOpenTrandModel: any;
+  setOpenTrandModel: (openTrandModel: boolean) => void;
   openSearchList: boolean;
-  setopenSearchList: any;
+  setopenSearchList: (openSearchList: boolean) => void;
 }
 
 const Search = ({
@@ -17,9 +17,9 @@ const Search = ({
   openSearchList,
   setopenSearchList,
 }: props) => {
-  const [searchInput, setSearchinput] = useState("");
+  const [searchInput, setSearchinput] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
-  const [searchDataList, setSearchDataList] = useState([]);
+  const [searchDataList, setSearchDataList] = useState<[]>([]);
 
   useEffect(() => {
     if (searchInput === "") {
@@ -27,7 +27,7 @@ const Search = ({
     }
   }, [searchInput]);
 
-  const FetchSearchMovieFun = async (e: any) => {
+  const FetchSearchMovieFun = async (e: React.FormEvent) => {
     e.preventDefault();
     setopenSearchList(true);
     await axios
@@ -49,7 +49,9 @@ const Search = ({
         <input
           type="text"
           placeholder="ရှာရန် ex - John Wick"
-          onChange={(e) => setSearchinput(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setSearchinput(e.target.value)
+          }
           value={searchInput}
           className="w-full h-14 rounded-xl bg-zinc-800 indent-16 text-lg text-slate-400 focus:outline-none focus:border-b-2 focus:border-fuchsia-500 focus:duration-150 placeholder:indent-16 placeholder:text-base placeholder:text-zinc-500"
         />

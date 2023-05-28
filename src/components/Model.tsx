@@ -4,19 +4,19 @@ import { BiMoviePlay } from "react-icons/bi";
 import ReactPlayer from "react-player";
 interface props {
   modeldata: any;
-  setOpenTrandModel: any;
-  translateOverview: any;
-  fullcast: any;
-  trailar: any;
+  setOpenTrandModel: (openTrandModel: boolean) => void;
+  translateOverview: string;
+  fullcast: [];
+  trailar: string;
 }
 
 interface searchprops {
   modeldata1: any;
-  setOpenTrandModel: any;
-  translateOverview1: any;
-  fullcast1: any;
-  trailar1: any;
-  setModelData1: any;
+  setOpenTrandModel: (openTrandModel: boolean) => void;
+  translateOverview1: string;
+  fullcast1: [];
+  trailar1: string;
+  setModelData1: (modeldata1: any) => void;
 }
 
 export const TrandingModel = ({
@@ -34,9 +34,9 @@ export const TrandingModel = ({
   //     .then((res) => setModelData(res.data));
   // }, [movieId]);
 
-  const [selectLanguage, setSelectLanguage] = useState("Burmese");
-  const [language, setLanguage] = useState(false);
-  const [actorcount, setactorcount] = useState(10);
+  const [selectLanguage, setSelectLanguage] = useState<string>("Burmese");
+  const [language, setLanguage] = useState<boolean>(false);
+  const [actorcount, setactorcount] = useState<number>(10);
 
   const options = [
     { value: "Burmese", text: "Burmese" },
