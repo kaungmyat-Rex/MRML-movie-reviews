@@ -2,8 +2,9 @@ interface props {
   searchDataList: any;
   openTrandModel: boolean;
   setOpenTrandModel: (openTrandModel: boolean) => void;
+  searchType: string;
 }
-import { IoIosArrowForward } from "react-icons/io";
+
 import { useState } from "react";
 
 import { SeemoreBtn } from "./Button";
@@ -14,6 +15,7 @@ const SearchList = ({
   searchDataList,
   openTrandModel,
   setOpenTrandModel,
+  searchType,
 }: props) => {
   const [modeldata1, setModelData1] = useState([]) as any[];
   const [translateOverview1, setTranslateOverview1] = useState("");
@@ -26,28 +28,28 @@ const SearchList = ({
     setOpenTrandModel(true);
     await axios
       .get(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=97daa3077452cbe6f793644c1afc0868&language=en-US`
+        `https://api.themoviedb.org/3/${searchType}/${id}?api_key=97daa3077452cbe6f793644c1afc0868&language=en-US`
       )
       .then((res) => {
         setModelData1(res.data);
 
-        axios
-          .get(
-            `https://imdb-api.com/en/API/FullCast/k_z20zir6t/${res.data.imdb_id}`
-          )
-          .then((res) => setFullcast1(res.data.actors));
-        axios
-          .get(
-            `https://imdb-api.com/en/API/YouTubeTrailer/k_z20zir6t/${res.data.imdb_id}`
-          )
-          .then((res) => {
-            setTrailar1(res.data.videoUrl);
-            // const url = res.data.videoUrl;
-            // const regex =
-            //   /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})(?:[\&\?].*?)?(?:#t=(\d+))?$/;
-            // const match = url.match(regex);
-            // setTrailar(match[1]);
-          });
+        // axios
+        //   .get(
+        //     `https://imdb-api.com/en/API/FullCast/k_z20zir6t/${res.data.imdb_id}`
+        //   )
+        //   .then((res) => setFullcast1(res.data.actors));
+        // axios
+        //   .get(
+        //     `https://imdb-api.com/en/API/YouTubeTrailer/k_z20zir6t/${res.data.imdb_id}`
+        //   )
+        //   .then((res) => {
+        //     setTrailar1(res.data.videoUrl);
+        //   });
+        // const url = res.data.videoUrl;
+        // const regex =
+        //   /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})(?:[\&\?].*?)?(?:#t=(\d+))?$/;
+        // const match = url.match(regex);
+        // setTrailar(match[1]);
 
         const options = {
           method: "POST",
@@ -68,6 +70,26 @@ const SearchList = ({
 
         axios.request(options).then((res) => setTranslateOverview1(res.data));
       });
+    await axios
+      .get(
+        `https://api.themoviedb.org/3/${searchType}/${id}/credits?api_key=97daa3077452cbe6f793644c1afc0868&language=en-US`
+      )
+      .then((res) => {
+        setFullcast1(res.data.cast);
+      });
+    await axios
+      .get(
+        `https://api.themoviedb.org/3/${searchType}/${id}/videos?api_key=97daa3077452cbe6f793644c1afc0868&language=en-US`
+      )
+      .then((res) => {
+        // setTrailar(res.data.videoUrl);
+        const filtervideo = res.data.results.filter(
+          (e: any) =>
+            e.official === true && e.name.toLowerCase().includes("trailer")
+        );
+        setTrailar1(filtervideo.slice(0, 1).map((e: any) => e.key));
+        console.log(filtervideo);
+      });
   };
 
   const seeMoreFun = (e: React.MouseEvent): void => {
@@ -77,11 +99,12 @@ const SearchList = ({
 
   return (
     <>
-      <div className="w-full relative ">
+      <div className="w-full relative lg:mt-16 ">
         <h1 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block bg-clip-text text-transparent text-lg font-extrabold pt-5 pb-5">
-          ရှာတွေသော ရုပ်ရှင်များ
+          ရှာတွေသော ရုပ်ရှင်များ , အမျိုးအစား -
+          {searchType === "movie" ? "ရုပ်ရှင်" : "စီးရီး"}
         </h1>
-        <IoIosArrowForward className="text-pink-500 text-2xl font-bold absolute top-6 left-44" />
+        {/* <IoIosArrowForward className="text-pink-500 text-2xl font-bold absolute top-6 left-98" /> */}
       </div>
       <div className="flex flex-col justify-center items-center md:flex-row md:flex-wrap lg:flex-row lg:flex-wrap lg:relative lg:pb-28 lg:justify-start lg:pl-24">
         {searchDataList
@@ -103,10 +126,12 @@ const SearchList = ({
 
                 <div className="ml-2 mr-2">
                   <h4 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block bg-clip-text text-transparent text-xl font-extrabold">
-                    {e.original_title}
+                    {searchType === "movie"
+                      ? e.original_title
+                      : e.original_name}
                   </h4>
                   <p className="text-slate-300 font-light mb-3">
-                    {e.release_date}
+                    {searchType === "movie" ? e.release_date : e.first_air_date}
                   </p>
                   <span
                     onClick={() => openTrandModelFun(e.id)}
@@ -137,6 +162,7 @@ const SearchList = ({
           fullcast1={fullcast1}
           trailar1={trailar1}
           setModelData1={setModelData1}
+          searchType={searchType}
         />
       </div>
     </>

@@ -31,3 +31,75 @@ html {
 .slick-slide > div {
   margin: 10px;
 }
+
+.image-main1 {
+  position: relative;
+  background-image: url("../src/assets/avenger.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 150px;
+  padding-bottom: 150px;
+  background-position: 0px -150px;
+  background-color: rgb(148, 163, 197);
+
+  background-blend-mode: multiply;
+  /* border: 7px solid rgb(89, 125, 189); */
+
+  /* box-shadow: rgb(89, 125, 189) 14px 14px; */
+  border-radius: 5px;
+}
+.image-main2 {
+  position: relative;
+  background-image: url("../src/assets/avater.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 150px;
+  padding-bottom: 150px;
+  background-position: 0px -150px;
+  background-color: rgb(148, 163, 197);
+
+  background-blend-mode: luminosity;
+  /* border: 7px solid rgb(89, 125, 189); */
+
+  /* box-shadow: rgb(89, 125, 189) 14px 14px; */
+  border-radius: 5px;
+}
+.image-main3 {
+  position: relative;
+  background-image: url("../src/assets/fast.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 150px;
+  padding-bottom: 150px;
+  background-position: 0px -150px;
+  background-color: rgb(148, 163, 197);
+
+  background-blend-mode: luminosity;
+  /* border: 7px solid rgb(89, 125, 189); */
+
+  /* box-shadow: rgb(89, 125, 189) 14px 14px; */
+  border-radius: 5px;
+}
+
+.image-cover {
+  position: absolute;
+  /* background: rgb(142, 86, 190);
+  background: linear-gradient(
+    90deg,
+    rgba(142, 86, 190, 1) 0%,
+    rgba(255, 113, 216, 1) 100%
+  ); */
+
+  background: rgb(137, 0, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(137, 0, 255, 1) 0%,
+    rgba(255, 0, 185, 1) 100%
+  );
+
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.4;
+}

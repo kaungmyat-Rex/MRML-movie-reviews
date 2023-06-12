@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { TbLoader3 } from "react-icons/tb";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,6 +19,10 @@ interface props {
   trailar: string;
   setTrailar: (trailar: string) => void;
   setopenSearchList: (openSearchList: boolean) => void;
+  setLoading: (loading: boolean) => void;
+  loading: boolean;
+  apitype: string;
+  setApitype: (apitype: string) => void;
 }
 
 const WatchBefore = ({
@@ -34,13 +37,19 @@ const WatchBefore = ({
   trailar,
   setTrailar,
   setopenSearchList,
+  setLoading,
+  loading,
+  apitype,
+  setApitype,
 }: props) => {
   const [count, setCount] = useState<number>(1);
   const Scrollref = useRef<any>(null);
   /*Single movie data and transliation api fetching for model.tsx*/
+
   const openTrandModelFun = async (id: string): Promise<void> => {
     setopenSearchList(false);
     setOpenTrandModel(true);
+    setApitype("movie");
     await axios
       .get(
         `https://api.themoviedb.org/3/movie/${id}?api_key=97daa3077452cbe6f793644c1afc0868&language=en-US`
@@ -48,11 +57,11 @@ const WatchBefore = ({
       .then((res) => {
         setModelData(res.data);
 
-        axios
-          .get(
-            `https://imdb-api.com/en/API/FullCast/k_z20zir6t/${res.data.imdb_id}`
-          )
-          .then((res) => setFullcast(res.data.actors));
+        // axios
+        //   .get(
+        //     `https://imdb-api.com/en/API/FullCast/k_z20zir6t/${res.data.imdb_id}`
+        //   )
+        //   .then((res) => setFullcast(res.data.actors));
         axios
           .get(
             `https://imdb-api.com/en/API/YouTubeTrailer/k_z20zir6t/${res.data.imdb_id}`
@@ -84,6 +93,13 @@ const WatchBefore = ({
         };
 
         axios.request(options).then((res) => setTranslateOverview(res.data));
+      });
+    await axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=97daa3077452cbe6f793644c1afc0868&language=en-US`
+      )
+      .then((res) => {
+        setFullcast(res.data.cast);
       });
   };
 
@@ -117,24 +133,41 @@ const WatchBefore = ({
     Scrollref.current.scrollLeft -= 500;
   };
 
-  if (isLoading) {
-    return (
-      <TbLoader3 className="text-pink-500 animate-spin text-5xl absolute left-1/2" />
-    );
-  }
+  useEffect(() => {
+    if (isLoading) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [isLoading]);
+
+  // if (isLoading) {
+  //   setLoading(true);
+  //   return (
+  //     <TbLoader3 className="text-pink-500 animate-spin text-5xl absolute left-1/2" />
+  //   );
+  // }
 
   return (
-    <div className="pt-7 pb-7 relative">
-      <h1 className="bg-gradient-to-r from-purple-500 to-pink-500 inline-block bg-clip-text text-transparent text-lg font-extrabold pt-5 pb-5 mt-5">
+    <div className={`${loading ? "hidden" : ""}pt-7 pb-7 relative`}>
+      <h1
+        className={`bg-gradient-to-r from-purple-500 to-pink-500 ${
+          loading ? "hidden" : "inline-block"
+        }  bg-clip-text text-transparent text-lg font-extrabold pt-5 pb-5 mt-5`}
+      >
         မသေခင် ကြည့်သင့်သော ရုပ်ရှင်များ
       </h1>
       <BsArrowLeftSquare
         onClick={() => ScrollRight()}
-        className=" text-white text-4xl z-20 absolute left-10 top-99 cursor-pointer md:-left-10 md:top-2/4 "
+        className={`${
+          loading ? "hidden" : ""
+        } text-white text-4xl z-10 absolute left-10 top-99 cursor-pointer md:-left-10 md:top-2/4 `}
       />
       <BsArrowRightSquare
         onClick={() => ScrollLeft()}
-        className=" text-white text-4xl z-20 absolute right-10 top-99 cursor-pointer md:-right-10 md:top-2/4"
+        className={`${
+          loading ? "hidden" : ""
+        } text-white text-4xl z-10 absolute right-10 top-99 cursor-pointer md:-right-10 md:top-2/4`}
       />
       <div
         ref={Scrollref}
@@ -167,7 +200,11 @@ const WatchBefore = ({
             </div>
           ))}
       </div>
-      <div className="flex flex-row justify-center items-center mt-6">
+      <div
+        className={`${
+          loading ? "hidden" : "flex"
+        } flex-row justify-center items-center mt-6`}
+      >
         <p
           data-test-id="1"
           onClick={(e: any) => countFun(e.target.dataset)}
@@ -203,6 +240,7 @@ const WatchBefore = ({
           translateOverview={translateOverview}
           fullcast={fullcast}
           trailar={trailar}
+          apitype={apitype}
         />
       </div>
     </div>
